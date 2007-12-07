@@ -1,0 +1,17 @@
+--- #YAML:1.0
+name:                WebService-OkiLab-ExtractPlace
+version:             0.01
+abstract:            Perl interface to the OkiLab ExtractPlace web service
+license:             ~
+generated_by:        ExtUtils::MakeMaker version 6.3201
+distribution_type:   module
+requires:     
+    Class::ErrorHandler:           0
+    JSON:                          0
+    LWP::UserAgent:                0
+    Test::More:                    0
+meta-spec:
+    url:     http://module-build.sourceforge.net/META-spec-v1.2.html
+    version: 1.2
+author:
+    - Makio Tsukamoto <tsukamoto@gmail.com>
