@@ -4,7 +4,7 @@ use warnings;
 use strict;
 use Carp;
 
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 use HTTP::Request::Common qw(GET POST);
 use LWP::UserAgent;
@@ -27,7 +27,7 @@ sub param {
 		$self->{"_$key"} = shift if (@_);
 		return $self->{"_$key"};
 	} else {
-		my @keys = sort map { s/^_//; $_; } grep { /^_/ } keys(%{$self});
+		my @keys = sort map { substr($_, 1) } grep { /^_/ } keys(%{$self});
 		return @keys;
 	}
 }
@@ -157,6 +157,21 @@ It returns recent HTTP::Request object which is send to the WebService.
 
 It returns recent HTTP::Response object which is send to the WebService.
 
+=head2 Internal methods
+
+Belows are internal method.
+
+=over 4
+
+=item param
+
+Accessor and mutator method to some params such as 'ua', 'url', 'req', 'res'.
+When no arguments has passed, it returns existing parameter name. 
+When parameter name has passed, it returns the parameter value. 
+When parameter name and value have passed, it set the value as the parameter value and returns set value. 
+
+=back
+
 =head1 DIAGNOSTICS
 
 It only return undef when something failed.
@@ -204,7 +219,7 @@ Please confirm the state of the HTTP::Request object, HTTP::Response object by r
 It occurs when the response content is not able to parse as JSON data.
 Please confirm the content of the HTTP::Request object by res().
 
-=over
+=back
 
 =head1 CONFIGURATION AND ENVIRONMENT
 
